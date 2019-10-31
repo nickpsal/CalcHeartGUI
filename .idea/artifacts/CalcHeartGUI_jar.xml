@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CalcHeartGUI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CalcHeartGUI_jar</output-path>
+    <root id="archive" name="CalcHeartGUI.jar">
+      <element id="module-output" name="CalcHeartGUI" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-8.0.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
