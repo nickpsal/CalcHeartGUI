@@ -18,8 +18,8 @@ public class kentrikoframe extends JFrame{
 	private JButton btn2;
 	private JButton btn4;
 	private JButton btn5;
-	
-	private tableSQL sql = new tableSQL(null, null, null, null, null, 0, null, null);
+
+	private tableSQL sql = new tableSQL(0, null, null, null, null, null, 0, null, null);
 	
 	public kentrikoframe() {
 		Font font = new Font("Verdana", Font.PLAIN, 16);
@@ -36,22 +36,22 @@ public class kentrikoframe extends JFrame{
 		btn4.setFont(font2);
 		btn5 = new JButton("ΕΞΟΔΟΣ");
 		btn5.setFont(font2);
-		
+
 		panel.add(label);
 		panel.add(btn1);
 		panel.add(btn2);
 		panel.add(btn4);
 		panel.add(btn5);
-		
+
 		ButtonListener listener = new ButtonListener();
 		btn1.addActionListener(listener);
 		btn2.addActionListener(listener);
 		btn4.addActionListener(listener);
 		btn5.addActionListener(listener);
-		
+
 		this.setContentPane(panel);
 		this.setVisible(true);
-		this.setSize(550, 500);
+		this.setSize(650, 500);
 		this.setResizable(false);
 		setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

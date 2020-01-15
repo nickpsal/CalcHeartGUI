@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class tableSQL {
+	private int id;
 	private String onoma;
 	private String eponimo;
 	private String imera;
@@ -26,7 +27,8 @@ public class tableSQL {
 	
 	static Connection myConn = null;	
 	
-	public tableSQL(String onoma, String eponimo, String imera, String minas, String etos, int age, String min, String max) {
+	public tableSQL(int id, String onoma, String eponimo, String imera, String minas, String etos, int age, String min, String max) {
+		this.id = id;
 		this.onoma = onoma;
 		this.eponimo = eponimo;
 		this.imera = imera;
@@ -35,7 +37,11 @@ public class tableSQL {
 		this.age = age;
 		this.min = min;
 		this.max = max;
-	}	
+	}
+
+	public int getId() {
+		return id;
+	}
 
 	public String getOnoma() {
 		return onoma;
@@ -84,7 +90,7 @@ public class tableSQL {
 	//Δημιουργία function για την Σύνδεση με την βάση Δεδομένων
 	
 	static Connection getConnection() {
-		String url =  "jdbc:mysql://localhost:3306/calculator?serverTimezone=UTC&characterEncoding=UTF-8";
+		String url =  "jdbc:mysql://localhost:3306/calc?serverTimezone=UTC&characterEncoding=UTF-8";
 		String user = "root";
 		String pass = "";
 		
@@ -99,7 +105,7 @@ public class tableSQL {
 	
 	static ArrayList<tableSQL> getEggrafes(){
 		ArrayList<tableSQL> eggrafes = new ArrayList<tableSQL>();
-		String url =  "jdbc:mysql://localhost:3306/calculator?serverTimezone=UTC&characterEncoding=UTF-8";
+		String url =  "jdbc:mysql://localhost:3306/calc?serverTimezone=UTC&characterEncoding=UTF-8";
 		String user = "root";
 		String pass = "";
 		Statement st;
@@ -112,12 +118,13 @@ public class tableSQL {
 			rs = st.executeQuery("SELECT * FROM calc");
 			while(rs.next()) {
 				u = new tableSQL(
+						rs.getInt("id"),
 						rs.getString("onoma"),		
 						rs.getString("eponimo"),
 						rs.getString("imera"),
 						rs.getString("minas"),
 						rs.getString("etos"),
-						rs.getInt("age"),
+						rs.getInt("ilikia"),
 						rs.getString("min"),
 						rs.getString("max")
 						);
@@ -134,27 +141,29 @@ public class tableSQL {
 		Font font = new Font("Verdana", Font.PLAIN, 16);
 		JTable table = new JTable();
 		DefaultTableModel model = new DefaultTableModel();		
-		Object[] columnsName = new Object[8];
-		columnsName[0] = "Όνομα";
-		columnsName[1] = "Επώνυμο";
-		columnsName[2] = "Ημέρα Γένησσης";
-		columnsName[3] = "Μήνας Γέννησης";
-		columnsName[4] = "Χρονολογία Γέννησης";
-		columnsName[5] = "Ηλικία";
-		columnsName[6] = "Ελάχιστο";
-		columnsName[7] = "Μέγιστο";
+		Object[] columnsName = new Object[9];
+		columnsName[0] = "ID";
+		columnsName[1] = "Όνομα";
+		columnsName[2] = "Επώνυμο";
+		columnsName[3] = "Ημέρα Γένησσης";
+		columnsName[4] = "Μήνας Γέννησης";
+		columnsName[5] = "Χρονολογία Γέννησης";
+		columnsName[6] = "Ηλικία";
+		columnsName[7] = "Ελάχιστο";
+		columnsName[8] = "Μέγιστο";
 		
 		model.setColumnIdentifiers(columnsName);
-		Object[] rowData = new Object[8];
+		Object[] rowData = new Object[9];
 		for(int i = 0; i<getEggrafes().size(); i++) {
-			rowData[0] = getEggrafes().get(i).getOnoma();
-			rowData[1] = getEggrafes().get(i).getEponimo();
-			rowData[2] = getEggrafes().get(i).getImera();
-			rowData[3] = getEggrafes().get(i).getMinas();
-			rowData[4] = getEggrafes().get(i).getEtos();
-			rowData[5] = getEggrafes().get(i).getAge();
-			rowData[6] = getEggrafes().get(i).getMin();
-			rowData[7] = getEggrafes().get(i).getMax();
+			rowData[0] = getEggrafes().get(i).getId();
+			rowData[1] = getEggrafes().get(i).getOnoma();
+			rowData[2] = getEggrafes().get(i).getEponimo();
+			rowData[3] = getEggrafes().get(i).getImera();
+			rowData[4] = getEggrafes().get(i).getMinas();
+			rowData[5] = getEggrafes().get(i).getEtos();
+			rowData[6] = getEggrafes().get(i).getAge();
+			rowData[7] = getEggrafes().get(i).getMin();
+			rowData[8] = getEggrafes().get(i).getMax();
 			
 			model.addRow(rowData);
 		}

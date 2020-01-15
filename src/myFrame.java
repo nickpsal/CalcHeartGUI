@@ -125,12 +125,12 @@ public class myFrame extends JFrame{
 					
 					//Εισαγωγή στην βάση Δεδομένων	
 					//URL ΣΥΝΔΕΣΗΣ
-					String url = "jdbc:mysql://localhost:3306/calculator?serverTimezone=UTC&characterEncoding=UTF-8";
+					String url = "jdbc:mysql://localhost:3306/calc?serverTimezone=UTC&characterEncoding=UTF-8";
 					//ΟΝΟΜΑ ΧΡΗΣΤΗ ΚΑΙ ΚΩΔΙΚΟΣ ΠΡΟΣΑΒΑΣΗΣ
 					String user = "root";
 					String pass = "";
 					//ΕΡΩΤΗΜΑ
-					String query = "INSERT IGNORE INTO calc (onoma,eponimo,imera,minas,etos,age,min,max) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+					String query = "INSERT IGNORE INTO calc (ID, ONOMA, EPONIMO, IMERA, MINAS, ETOS, ILIKIA, MIN, MAX) VALUES (default,?, ?, ?, ?, ?, ?, ?, ?)";
 					
 					try {
 						// 1. Σύνδεση με την βάση δεδομένων
